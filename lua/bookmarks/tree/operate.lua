@@ -75,6 +75,10 @@ function M.open_treeview()
   local ctx = vim.g.bookmark_list_win_ctx
 
   local win = (ctx ~= nil) and vim.api.nvim_win_is_valid(ctx.win) and ctx.win or nil
+  if win then
+    vim.api.nvim_set_current_win(win)
+    return
+  end
 
   local lists = repo.bookmark_list.read.find_all()
   require("bookmarks.tree.render.main").render(lists, { win = win })
@@ -82,6 +86,18 @@ end
 
 function M.refresh()
   M.open_treeview()
+end
+
+function M.enlarge_window()
+  local win = vim.api.nvim_get_current_win()
+  local width = vim.api.nvim_win_get_width(win)
+  vim.api.nvim_win_set_width(win, width + 1)
+end
+
+function M.narrow_window()
+  local win = vim.api.nvim_get_current_win()
+  local width = vim.api.nvim_win_get_width(win)
+  vim.api.nvim_win_set_width(win, width - 1)
 end
 
 -- function M.open()

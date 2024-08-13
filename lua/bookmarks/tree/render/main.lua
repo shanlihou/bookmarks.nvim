@@ -56,7 +56,8 @@ function M.render(bookmark_lists, opts)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.api.nvim_buf_set_option(buf, "modifiable", false)
 
-  local win = opts.win or create_vsplit_with_width({ width = 30 })
+  local width = vim.g.bookmarks_config.treeview.width
+  local win = opts.win or create_vsplit_with_width({ width = width })
   vim.api.nvim_win_set_buf(win, buf)
 
   vim.b[buf]._bm_context = context

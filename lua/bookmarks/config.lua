@@ -31,6 +31,7 @@ local default_config = {
         .. " : "
         .. bookmark.content
     end,
+    width = 50,
     keymap = {
       quit = { "q", "<ESC>" },
       refresh = "R",
@@ -41,6 +42,8 @@ local default_config = {
       delete = "d",
       active = "s",
       copy = "c",
+      enlarge_window = "=",
+      narrow_window = "-",
     },
   },
   -- do whatever you like by hooks
